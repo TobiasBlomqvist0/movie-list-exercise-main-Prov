@@ -1,0 +1,17 @@
+{
+  "name": "movie-list-exercise",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon ./src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "path": "^0.12.7"
+  },
+  "description": "Designa en webbsida som effektivt hämtar och presenterar filmdata från en API endpoint. Webbsidan skall inkludera verktyg för att filtrera filmer enligt användarens önskemål. Det skall också gå att välja en viss film, en skild sida, som visar end bild och mera information om just den filmen.",
+  "main": "index.js",
+  "keywords": [],
+  "author": ""
+}
