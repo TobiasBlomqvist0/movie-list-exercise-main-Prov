@@ -27,6 +27,7 @@ let data
 let startLength
 writeRateOptions()
 
+//Fetches all movies
 async function fetchMovies() {
     try{
     const response = await fetch("/api/movies")
@@ -40,7 +41,7 @@ async function fetchMovies() {
 }
 
 
-
+//Writes all movies into the tabel
 function writeMovies(movies) {
         parentTable.innerHTML = ""
         movies.map(movie => parentTable.innerHTML += `
@@ -54,7 +55,7 @@ function writeMovies(movies) {
         `).join("");
 }
 
-//Hämtar och ritar ut alla år som en film släptes
+//Fetches all years and writes them for filtering options
 async function fetchYearOptions() {
     const response = await fetch("/api/movies/year")
     const dataYear     = await response.json()
@@ -75,6 +76,7 @@ async function fetchYearOptions() {
     `)
 }
 
+//Write all RateOptions for filtering the movies
 function writeRateOptions() {
     let rates = ["0.10", "0.20", "0.30", "0.40", "0.50", "0.60", "0.70", "0.80", "0.90", "1.00"]
 
@@ -97,6 +99,7 @@ function maxRate(rate) {
     filterRate()
 }
 
+//checks if both rate options been choosen and filters the movies array
 function filterRate() {
     if(rateMin.innerText == "Min" || rateMax.innerHTML == "Max"){
     }
@@ -117,6 +120,7 @@ function MaxYearClicked(year) {
     filterYears()
 }
 
+//Checks if both year options been choosen and filters the movies array
 function filterYears() {
     if(data.length < startLength) {
         fetchMovies()
@@ -134,7 +138,7 @@ function filterYears() {
 
 
 
-//sorterar enlight ålder från minst till störst och andra vägen
+//Filters years from newest to oldest and other way
 const topDown = document.querySelector("#topDown").addEventListener("click", () => {
     NewFirst()
 })
@@ -151,6 +155,7 @@ function OldFirst() {
     writeMovies(data.sort((a, b) => (a.releaseDate < b.releaseDate) ? -1 : 1))
 }
 
+//Fetch all genres and writes them as options to choose from
 async function fetchGenresOptions() {
     const response = await fetch("/api/movies/genres")
     const genresArray = await response.json()
@@ -171,7 +176,7 @@ function showChosenGenre(genre) {
     chosenGenre.innerText = genre
     filterChosenGenre()
 }
-
+//Filters the choosen genre to only show them
 function filterChosenGenre() {
 
     const onlyChosenGenre = data.filter(movie => movie.genres.includes(chosenGenre.innerText))
